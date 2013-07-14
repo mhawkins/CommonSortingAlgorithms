@@ -7,14 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSArray+CommonSortingAlgorithms.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
+        NSArray *numbersArray = @[ @(5), @(1), @(4), @(3), @(2) ];
+        NSArray *sortedNumbersArray = [numbersArray bubbleSort];
+        NSLog(@"Sorted numbers array.... '%@'", sortedNumbersArray);
         
-        // insert code here...
-        NSLog(@"Hello, World!");
+        NSArray *stringArray = @[ @"Bravo", @"Alpha", @"Gamma", @"Delta", @"Charlie"];
+        NSArray *sortedStringArray = [stringArray bubbleSort];
+        NSLog(@"Sorted strings array.... '%@'", sortedStringArray);
         
     }
     return 0;
