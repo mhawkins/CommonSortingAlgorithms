@@ -77,4 +77,64 @@
     return mutableArray;
 }
 
+-(NSArray *)quickSort
+{
+    // Create a mutable copy of our array
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:self];
+    
+    // If one element, just return
+    if(self.count <= 1)
+        return mutableArray;
+    
+    NSMutableArray *lessArray = [NSMutableArray array];
+    NSMutableArray *moreArray = [NSMutableArray array];
+    
+    // Get our pivot element and remove it from the array
+    id pivotElement = self[self.count/2];
+    [mutableArray removeObject:pivotElement];
+        
+    for(id record in mutableArray)
+    {
+        // Do these objects respond to the compare selector?
+        if([record respondsToSelector:@selector(compare:)] && [pivotElement respondsToSelector:@selector(compare:)])
+        {
+            if([record compare:pivotElement] == NSOrderedAscending || [record compare:pivotElement] == NSOrderedSame)
+            {
+                [lessArray addObject:record];
+            }
+            else
+            {
+                [moreArray addObject:record];
+            }
+        }
+        // Are they strings?
+        else if([record isKindOfClass:[NSString class]] && [pivotElement isKindOfClass:[NSString class]])
+        {
+            NSString *string1 = (NSString *)record;
+            NSString *string2 = (NSString *)pivotElement;
+            
+            if([string1 compare:string2 options:NSLiteralSearch] == NSOrderedAscending || [string1 compare:string2 options:NSLiteralSearch] == NSOrderedSame)
+            {
+                [lessArray addObject:record];
+            }
+            else
+            {
+                [moreArray addObject:record];
+            }
+            
+        }
+        // Unexpected type, fail loudly
+        else
+        {
+            [NSException raise:@"UnsortableObject" format:@"Cannot sort object '%@' and '%@'", record, pivotElement];
+        }
+    }
+    
+    NSMutableArray *results = [NSMutableArray array];    
+    [results addObjectsFromArray:[lessArray quickSort]];
+    [results addObject:pivotElement];
+    [results addObjectsFromArray:[moreArray quickSort]];
+    return results;
+}
+
 @end

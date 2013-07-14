@@ -14,12 +14,16 @@ int main(int argc, const char * argv[])
 
     @autoreleasepool {
         NSArray *numbersArray = @[ @(5), @(1), @(4), @(3), @(2) ];
-        NSArray *sortedNumbersArray = [numbersArray bubbleSort];
-        NSLog(@"Sorted numbers array.... '%@'", sortedNumbersArray);
+        NSArray *sortedNumbersArrayBubble = [numbersArray bubbleSort];
+        NSLog(@"Sorted numbers array using bubble sort.... '%@'", sortedNumbersArrayBubble);
+        NSArray *sortedNumbersArrayQuick = [numbersArray quickSort];
+        NSLog(@"Sorted numbers array using quick sort.... '%@'", sortedNumbersArrayQuick);
         
         NSArray *stringArray = @[ @"Bravo", @"Alpha", @"Gamma", @"Delta", @"Charlie"];
-        NSArray *sortedStringArray = [stringArray bubbleSort];
-        NSLog(@"Sorted strings array.... '%@'", sortedStringArray);
+        NSArray *sortedStringArrayBubble = [stringArray bubbleSort];
+        NSLog(@"Sorted strings array using bubble sort.... '%@'", sortedStringArrayBubble);
+        NSArray *sortedStringArrayQuick = [stringArray quickSort];
+        NSLog(@"Sorted strings array using quick sort.... '%@'", sortedStringArrayQuick);
         
     }
     return 0;

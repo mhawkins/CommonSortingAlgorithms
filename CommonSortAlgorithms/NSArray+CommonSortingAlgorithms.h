@@ -11,4 +11,5 @@
 @interface NSArray (CommonSortingAlgorithms)
 -(NSArray *)bubbleSortUsingNSComparisonResult:(NSComparisonResult)comparisonResult;
 -(NSArray *)bubbleSort;
+-(NSArray *)quickSort;
 @end
